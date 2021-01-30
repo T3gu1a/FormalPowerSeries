@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <title>FormalPowerSeries_BTeguia</title>
+    <meta name="generator" content="wxMaxima"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/x-mathjax-config">  MathJax.Hub.Config({
+    displayAlign: "left",
+    context: "MathJax",
+    TeX: {TagSide: "left"}
+  })
+</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML" async="async">  // A comment that hinders wxWidgets from optimizing this tag too much.
+</script>
+    <link rel="stylesheet" type="text/css" href="FormalPowerSeries_BTeguia_htmlimg/FormalPowerSeries_BTeguia.css"/>
+  </head>
+  <body>
+    <!-- ****************************************************** -->
+    <!-- *        Created with wxMaxima version 20.06.6       * -->
+    <!-- ****************************************************** -->
+    <noscript>
+      <div class="error message">
+        <p>Please enable JavaScript in order to get a 2d display of the equations embedded in this web page.</p>
+      </div>
+    </noscript>
+    <p hidden="hidden">\(      \DeclareMathOperator{\abs}{abs}
+      \newcommand{\ensuremath}[1]{\mbox{$#1$}}
+\)</p>
+    <!-- Title cell -->
+    <div class="title">
+      <p>Formal Power Series in Maxima
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">An Informal presentation 
+      <br/>Bertrand Teguia Tabuguia
+      <br/>February 2021
+</div>
+    <!-- Section cell -->
+    <div class="section">
+      <p>  1 Introduction
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">What if I tell you that to find the power series formula of f(z):= exp(z)+cos(z) one has to compute a differential equation for f, convert that differential equation into a recurrence equation and solve that recurrence equation for the power series coefficients? Of course, some other steps should also be considered, but I will not bother you with many details. Let's present how this works for f(z):=exp(z)+cos(z).
+</div>
+    <!-- Text cell -->
+    <div class="comment">First, I load my package FPS (Formal Power Series) which contains all the necessary functions.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i1)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">batchload</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">FPS</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\mbox{}\\Version 1.0 \mbox{}\\Copyright (c) May 2020, Bertrand Teguia Tabuguia \mbox{}\\https://www.bertrandteguia.com \mbox{}\\bteguia@ mathematik.uni-kassel.de \mbox{}\\University of Kassel, Germany \]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Yeah! I completed this package last year with my Ph.D. thesis which is the main reference for the mathematical background behind the algorithms implemented. Nevertheless, the code gets better and better since June 2020 when I started the Maple version of the package. By the way, I made a demonstration int the Maple Conference 2020. Now, I would say it is 'almost-surely' (I don't know the measure) 'perfect'. I recommend mathematician to read my Ph.D. thesis or the papers
+      <br/>(1)  Teguia Tabuguia, Bertrand. A variant of van Hoeij's algorithm to compute hypergeometric term solutions of holonomic recurrence equations.
+      <br/>(2)  Teguia Tabuguia, Bertrand and Koepf, Wolfram. Symbolic computation of hypergeometric type power series
+      <br/>That will appear soon...
+      <br/>Let us come back to our example. First, we compute a differential equation.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i2)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">f</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i3)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">DE</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">HolonomicDE</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_function">F</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o3} \frac{{{d}^{3}}}{d {{z}^{3}}} \operatorname{F}(z)-\frac{{{d}^{2}}}{d {{z}^{2}}} \operatorname{F}(z)+\frac{d}{d z} \operatorname{F}(z)-\operatorname{F}(z)=0\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Then we convert it into a recurrence equation.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i4)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">DEtoRE</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">DE</span>
+            <span class="code_endofline">,</span>
+            <span class="code_function">F</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">]</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o4} \left( n+1\right) \, \left( n+2\right) \, \left( n+3\right) \, {a_{n+3}}-\left( n+1\right) \, \left( n+2\right) \, {a_{n+2}}+\left( n+1\right) \, {a_{n+1}}-{a_n}=0\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">This can also be done directly as follow.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i5)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">RE</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">FindRE</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">]</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o5} \left( n+1\right) \, \left( n+2\right) \, \left( n+3\right) \, {a_{n+3}}-\left( n+1\right) \, \left( n+2\right) \, {a_{n+2}}+\left( n+1\right) \, {a_{n+1}}-{a_n}=0\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">The next step is to solve that recurrence equation. Here we use a new algorithm from my Ph.D.: mfoldHyper, to compute what we call m-fold hypergeometric term solutions.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i6)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">mfoldHyper</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">RE</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">a</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">]</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o6} [[1\operatorname{,}\{\frac{1}{n\operatorname{!}}\}]\operatorname{,}[2\operatorname{,}\{\frac{{{\left( -1\right) }^{n}}}{\left( 2 n\right) \operatorname{!}}\}]]\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Talking about mfoldHyper may need another presentation... In this presentation, I only use it. 
+      <br/>You may have recognized the coefficients of the series of exp(z) and cos(z). Finally we get the representation
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i7)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o7} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 n}}}{\left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{z}^{n}}}{n\operatorname{!}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Isn't this amazing?! And by this process, FPS is able to do more! Even Laurent-Puiseux series are handled, I mean series with positive, negative and fractional powers.
+</div>
+    <!-- Text cell -->
+    <div class="comment">I will only present examples for expansions in the positive neighborhood of 0 since the general case is deduced easily from it.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i8)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o8} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{n+1}}}{n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{\frac{n+1}{2}}}}{n+1}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i9)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">5</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o9} \left( \sum_{n=0}^{\infty }{\left. -\frac{{{\left( -1\right) }^{n}}\, \left( 2 n-1\right) \operatorname{!} \left( \left( 2 n+1\right) \operatorname{!}-3 \left( 2 n\right) \operatorname{!}\right) \, {{z}^{n}}}{{{4}^{n}}\, {{n\operatorname{!}}^{2}}\, \left( \left( 2 n-1\right) \operatorname{!}-\left( 2 n\right) \operatorname{!}\right) }\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 \left( n-2\right) }}}{\left( 2 n+1\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Could this be done before? This (symbolic) approach was introduced in 1992 by Wolfram Koepf, but since m-fold hypergeometric terms could not be computed before, the algorithm was reduced to some particular cases, and the result was still amazing at that time. With the results of Marko Petkovsek and Mark van Hoeij, some improvements could be done around the 2000s. Currently the only Computer Algebra System (CAS) that uses a cutting-edge implementation of Koepf's approach on ist release version is Maple; Mathematica also has an implementation but van Hoej's algorithm seems to not be used. But gess what? None of the above computations can be obtained in Maple (see my pdf file: Formal Power Series in Maple). This is normal because the coefficients cannot be detected directly by the Maple implementation. Regarding Maxima, all these computations are new and I am happy to contribute in making it among the top CASs for computing power series. Therefore there is no need to compare my implementation with the built-in Maxima command "powerseries". Let's move on and present more examples.
+</div>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Section cell -->
+    <div class="section">
+      <p>  2 Hypergeometric type power series
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">You can find a definition of this subtitle in paper (2) mentioned above.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i10)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o10} \sum_{n=0}^{\infty }{\left. \frac{{{4}^{n}}\, {{n\operatorname{!}}^{2}}\, {{z}^{2 \left( n+1\right) }}}{\left( n+1\right) \, \left( 2 n+1\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i11)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o11} \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 \left( 2 n+1\right) }}}{2 n+1}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i12)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">asinh</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o12} \frac{\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, \left( 2 n\right) \operatorname{!} {{z}^{2 \left( n+1\right) }}}{\left( n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}}{2}+z+1\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i13)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">integrate</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">erf</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">t</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">t</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o13} -\frac{\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 n}}}{\left( 2 n-1\right)  n\operatorname{!}}\right.}}{\sqrt{\ensuremath{\pi} }}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i14)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">%pi</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o14} 3 \sum_{n=0}^{\infty }{\left. \frac{{{z}^{3 n+1}}}{{{\left( \frac{2}{3}\right) }_n}\, {{\left( \frac{4}{3}\right) }_n}\, {{27}^{n}} n\operatorname{!}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Note that (x)_{n+1} (I hope you know LaTeX, index notation) = x(x+1)...(x+n). This is what we call raised factorial or Pochhammer symbol.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i15)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o15} \frac{\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 \left( n+1\right) }}}{\left( n+1\right) \, \left( 2 n+1\right) }\right.}}{2}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i16)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">declare</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">k</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">constant</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o16} \mathit{done}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">I may need to find how to avoid such specification for the user in Maxima...
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i17)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_variable">k</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o17} \sum_{n=0}^{\infty }{\left. \frac{{{(k)}_n}\, {{z}^{n+2}}}{n\operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i18)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">·</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">k</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">k</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o18} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left| k\right| }^{2 n}}\, {{\left( -1\right) }^{n}}\, {{z}^{2 n+3}}}{\left( 2 n\right) \operatorname{!}}\right.}\right) +k\, \sum_{n=0}^{\infty }{\left. \frac{{{\left| k\right| }^{2 n}}\, {{\left( -1\right) }^{n}}\, {{z}^{2 \left( n+2\right) }}}{\left( 2 n+1\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i19)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o19} \left( \sum_{n=0}^{\infty }{\left. -\frac{{{\left( -1\right) }^{n}}\, {{4}^{n}}\, {{z}^{4 n+3}}}{{{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, \left( 2 n+1\right) \, \left( 4 n+1\right) \, \left( 4 n+3\right) \, {{64}^{n}}\, \left( 2 n\right) \operatorname{!}}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{4}^{n}}\, {{z}^{4 n+1}}}{{{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, \left( 4 n+1\right) \, {{64}^{n}}\, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{4}^{n}}\, {{z}^{4 n}}}{{{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, {{64}^{n}}\, \left( 2 n\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i20)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o20} \sum_{n=0}^{\infty }{\left. \frac{2 \left( n+1\right) \, {{\left( -1\right) }^{n}}\, {{z}^{2 n+1}}}{\left( 2 n+1\right) \, \left( 2 n\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i21)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">−</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">6</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">−</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">4</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">12</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">
+              <br/>
+            </span>   
+            <span class="code_operator">+</span>
+            <span class="code_number">5</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">12</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">x</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">4</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">x</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o21} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{x}^{2 \left( n+2\right) }}}{4 \left( n+1\right) \, \left( n+2\right) \, \left( 2 n+1\right) \, \left( 2 n+3\right) }\right.}\right) +\frac{1}{4}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i22)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">declare</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">q1</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">constant</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">q2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">constant</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i23)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">q1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">q2</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o23} \left( \sum_{n=0}^{\infty }{\left. -\frac{\mathit{q1}\, {{\mathit{q2}}^{-n-1}}\, {{z}^{3 n+2}}}{{{\mathit{q2}}^{2}}-{{\mathit{q1}}^{3}}}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. -\frac{{{z}^{3 n+1}}}{\left( {{\mathit{q2}}^{2}}-{{\mathit{q1}}^{3}}\right) \, {{\mathit{q2}}^{n}}}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. \frac{{{z}^{2 n+1}}}{\left( {{\mathit{q2}}^{2}}-{{\mathit{q1}}^{3}}\right) \, {{\mathit{q1}}^{n}}}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. -\frac{{{\mathit{q1}}^{2}}\, {{\mathit{q2}}^{-n-1}}\, {{z}^{3 n}}}{{{\mathit{q2}}^{2}}-{{\mathit{q1}}^{3}}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{\mathit{q2}\, {{\mathit{q1}}^{-n-1}}\, {{z}^{2 n}}}{{{\mathit{q2}}^{2}}-{{\mathit{q1}}^{3}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i24)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">tan</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o24} \left( \sum_{n=0}^{\infty }{\left. 8 {{3}^{n-1}}\, {{z}^{4 n+2}}\right.}\right) +\frac{{{z}^{2}}}{3}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i25)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o25} \left( \sum_{n=0}^{\infty }{\left. \frac{3 \left( {{\left( -1\right) }^{n}}+{{\left( -9\right) }^{n}}\right) \, {{z}^{2 n+1}}}{2 \left( 2 n+1\right) \, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{\left( 3 {{\left( -1\right) }^{n}}-{{\left( -9\right) }^{n}}\right) \, {{z}^{2 n}}}{2 \left( 2 n\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i26)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o26} \sum_{n=0}^{\infty }{\left. \frac{\left( \left( 2 n\right) \operatorname{!}+{{\left( -1\right) }^{n}}\, {{4}^{n}}\, {{n\operatorname{!}}^{2}}\right) \, {{z}^{2 n+1}}}{\left( 2 n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i27)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o27} \left( \sum_{n=0}^{\infty }{\left. \frac{\left( 4 {{\left( -1\right) }^{n}}\, \left( 2 \left( n+1\right) \right) \operatorname{!}+n\, {{\left( -9\right) }^{n+1}}+{{\left( -9\right) }^{n+1}}-3 n\, {{\left( -1\right) }^{n}}-3 {{\left( -1\right) }^{n}}\right) \, {{z}^{2 \left( n+1\right) }}}{4 \left( n+1\right) \, \left( 2 \left( n+1\right) \right) \operatorname{!}}\right.}\right) +1\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i28)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o28} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 \left( n+1\right) }}}{n+1}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{n+1}}}{n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. -\frac{{{\left( -1\right) }^{n}}\, \left( 2 n\right) \operatorname{!} {{z}^{3 n}}}{\left( 2 n-1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i29)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sinh</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o29} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{4 n+2}}}{2 n+1}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. \frac{{{z}^{2 n+1}}}{\left( 2 n+1\right) \, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{z}^{2 n}}}{n\operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i30)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o30} \sum_{n=0}^{\infty }{\left. \frac{\left( \frac{\sqrt{5}\, {{\left( \sqrt{5}+3\right) }^{n}}\, {{\left( -1\right) }^{n}}}{{{2}^{n}}}+\frac{{{\left( \sqrt{5}+3\right) }^{n}}\, {{\left( -1\right) }^{n}}}{{{2}^{n}}}-\frac{{{\left( \sqrt{5}-3\right) }^{n}}\, \sqrt{5}}{{{2}^{n}}}+\frac{{{\left( \sqrt{5}-3\right) }^{n}}}{{{2}^{n}}}\right) \, {{z}^{2 n+1}}}{2 \left( 2 n+1\right) }\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i31)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">Nmax</span>
+            <span class="code_operator">:</span>
+            <span class="code_number">11</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <!-- Text cell -->
+    <div class="comment">This variable is used to change the maximal order of the differential equation to be computed.
+      <br/>In the following case, a differential equation of order 11 is needed.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i32)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o32} \left( \sum_{n=0}^{\infty }{\left. \frac{3 \left( {{\left( -9\right) }^{n+1}}+{{\left( -1\right) }^{n}}\right) \, {{z}^{2 \left( n+1\right) +1}}}{8 \left( n+1\right) \, \left( 2 n+1\right) \, \left( 2 n+3\right) \, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. -\frac{\left( 3 {{5}^{\frac{n}{2}}} \cos{\left( \operatorname{atan}(2) n\right) }+6 {{5}^{\frac{n}{2}}} \sin{\left( \operatorname{atan}\left( \frac{1}{2}\right)  n\right) }-2 {{3}^{n}}-3\right) \, {{z}^{n}}}{2 n\operatorname{!}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">I set the default value of Nmax to 10. Note that such example may increase the CPU time use in the computations.
+</div>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Subsection cell -->
+    <div class="subsect">
+      <p>  2.1 Detecting identities
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">One of the main reason to have a direct approach is because it can simplify inputs to polynomials and constants in particular. Therefore it helps to discover identities.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i33)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">acos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o33} \frac{\ensuremath{\pi} }{2}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Note that no prior knowledge is used, the result is obtained by means of symbolic computations only.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i34)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">4</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">acos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o34} 8 {{z}^{4}}-8 {{z}^{2}}+1\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i35)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">acos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o35} \left( \sum_{n=0}^{\infty }{\left. -\frac{2 \left( 2 n\right) \operatorname{!} {{z}^{2 n+1}}}{\left( 2 n-1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\right) +4 {{z}^{3}}-3 z\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i36)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o36} 0\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i37)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">f</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o37} \operatorname{atan}\left( \frac{{{z}^{2}}+z}{1-{{z}^{3}}}\right) \]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i38)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o38} \left( \sum_{n=0}^{\infty }{\left. \frac{\sin{\left( \frac{\ensuremath{\pi}  \left( n+1\right) }{2}\right) } {{z}^{2 \left( n+1\right) }}}{n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{\sin{\left( \frac{\ensuremath{\pi}  \left( n+1\right) }{2}\right) } {{z}^{n+1}}}{n+1}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">In this previous example, the solution of the underlying recurrence equation contains complex numbers which reduce to real numbers when they are written in their algebraic representations.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i39)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">g</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o39} \operatorname{atan}\left( {{z}^{2}}\right) +\operatorname{atan}(z)\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i40)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o40} \left( \sum_{n=0}^{\infty }{\left. \frac{\sin{\left( \frac{\ensuremath{\pi}  \left( n+1\right) }{2}\right) } {{z}^{2 \left( n+1\right) }}}{n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{\sin{\left( \frac{\ensuremath{\pi}  \left( n+1\right) }{2}\right) } {{z}^{n+1}}}{n+1}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i41)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o41} 0\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i42)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">declare</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">y</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">constant</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o42} \mathit{done}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i43)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">y</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">y</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o43} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{2 n+1}}}{2 n+1}\right.}\right) +\operatorname{atan}(y)\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i44)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">f</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o44} \frac{\sqrt{1-\sqrt{1-z}}}{\sqrt{z}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i45)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o45} \frac{\sum_{n=0}^{\infty }{\left. \frac{{{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, {{4}^{n}}\, {{z}^{n}}}{\left( 2 n+1\right) \operatorname{!}}\right.}}{\sqrt{2}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i46)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">g</span>
+            <span class="code_operator">:</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o46} \frac{\sqrt{\sqrt{z}+1}-\sqrt{1-\sqrt{z}}}{\sqrt{2}\, \sqrt{z}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i47)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o47} \frac{\sum_{n=0}^{\infty }{\left. \frac{{{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, {{4}^{n}}\, {{z}^{n}}}{\left( 2 n+1\right) \operatorname{!}}\right.}}{\sqrt{2}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i48)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o48} 0\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Isn't this nice?!
+</div>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Subsection cell -->
+    <div class="subsect">
+      <p>  2.2 Some Puiseux series (series with fractional powers)
+</p>
+    </div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i49)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o49} \sum_{n=0}^{\infty }{\left. \frac{\left( 2 n\right) \operatorname{!} {{z}^{\frac{2 n+1}{3}}}}{\left( 2 n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i50)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">5</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o50} \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{\frac{n+1}{5}}}}{n+1}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i51)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">7</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o51} \sum_{n=0}^{\infty }{\left. {{z}^{\frac{n}{7}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i52)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">4</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o52} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{\frac{6 n+3}{4}}}}{\left( 2 n+1\right) \, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{n}}}{\left( 2 n\right) \operatorname{!}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i53)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">asinh</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o53} \left( \sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{\frac{6 n+3}{6}}}}{2 n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, \left( 2 n\right) \operatorname{!} {{z}^{\frac{4 n+2}{6}}}}{\left( 2 n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i54)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">8</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sqrt</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">13</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">4</span>
+            <span class="code_operator">+</span>
+            <span class="code_number">7</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o54} \left( \sum_{n=0}^{\infty }{\left. \frac{2 {{\left( \frac{1}{4}\right) }_n}\, {{\left( \frac{3}{4}\right) }_n}\, {{\left( -8\right) }^{n}}\, {{4}^{n}}\, {{z}^{\frac{6 n+3}{2}}}}{\left( 2 n+1\right) \, \left( 2 n\right) \operatorname{!}}\right.}\right) +\sum_{n=0}^{\infty }{\left. -\frac{{{7}^{\frac{1}{2}-n}}\, {{\left( -13\right) }^{n}}\, \left( 2 n\right) \operatorname{!} {{z}^{4 n}}}{\left( 2 n-1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">The sum of these two latter series can be written as a sum of four series as shown below.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i55)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">5</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o55} \left( \sum_{n=0}^{\infty }{\left. \frac{\left( 2 n\right) \operatorname{!} {{z}^{\frac{10 n+5}{15}}}}{\left( 2 n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. \frac{3 {{\left( -1\right) }^{n}}\, {{z}^{\frac{3 n+2}{15}}}}{3 n+2}\right.}\right) +\left( \sum_{n=0}^{\infty }{\left. -\frac{3 {{\left( -1\right) }^{n}}\, {{z}^{\frac{3 n+1}{15}}}}{3 n+1}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{3 {{\left( -1\right) }^{n}}\, {{z}^{\frac{n+1}{15}}}}{n+1}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">One can also recover the basic representation by using map(lambda([f],FPS(f,z,n)),.). The above result is related to a linear system solved in the algorithm. When there are many possible representations, the algorithm selects a particular one.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i56)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">map</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">lambda</span>
+            <span class="code_operator">(</span>
+            <span class="code_operator">[</span>
+            <span class="code_variable">f</span>
+            <span class="code_operator">]</span>
+            <span class="code_endofline">,</span>
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_function">asin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">3</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_number">5</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o56} \left( \sum_{n=0}^{\infty }{\left. \frac{\left( 2 n\right) \operatorname{!} {{z}^{\frac{2 n+1}{3}}}}{\left( 2 n+1\right) \, {{4}^{n}}\, {{n\operatorname{!}}^{2}}}\right.}\right) +\sum_{n=0}^{\infty }{\left. \frac{{{\left( -1\right) }^{n}}\, {{z}^{\frac{n+1}{5}}}}{n+1}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">I can provide many more examples, but let's stop here and see other kind of representations.
+</div>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Subsection cell -->
+    <div class="subsect">
+      <p>  2.3 Series related to hypergeometric type series
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">Some formulas do not fit into the category of hypergeometric type series. However we can still connect their representations with hypergeometric type series. This is the situation for products and reciprocals of hypergeometric type series. The outputs are given as a recursive formula, by application of the Cauchy product rule or both.
+      <br/>Our first example is the generating function of the Bernoulli numbers.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i57)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">−</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o57} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_n}=\sum_{k=1}^{n}{\left. -\frac{{A_{n-k}}}{k\operatorname{!}}\right.}\operatorname{,}{A_0}=1]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i58)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o58} \sum_{n=0}^{\infty }{\left. \left( \sum_{k=0}^{n}{\left. \frac{{{\left( -1\right) }^{n-k}}}{k\operatorname{!} \left( n-k+1\right) }\right.}\right) \, {{z}^{n+1}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i59)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o59} \sum_{n=0}^{\infty }{\left. {{\left( -1\right) }^{n}}\, \left( \sum_{k=0}^{n}{\left. \frac{1}{k\operatorname{!} \left( n-k+1\right) }\right.}\right) \, {{z}^{n+1}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i60)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">tan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o60} [\sum_{n=0}^{\infty }{\left. \left( \sum_{k=0}^{n}{\left. \frac{{A_k}\, {{\left( -1\right) }^{n-k}}}{\left( 2 n-2 k+1\right) \operatorname{!}}\right.}\right) \, {{z}^{2 n+1}}\right.}\operatorname{,}{A_k}=\sum_{j=1}^{k}{\left. -\frac{{A_{k-j}}\, {{\left( -1\right) }^{j}}}{\left( 2 j\right) \operatorname{!}}\right.}\operatorname{,}{A_0}=1]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i61)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">/</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o61} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{2 n-1}}\right.}\operatorname{,}{A_n}=\sum_{k=1}^{n}{\left. -\frac{{{\left( -1\right) }^{k}}\, {A_{n-k}}}{2 k+1}\right.}\operatorname{,}{A_0}=1]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i62)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o62} \sum_{n=0}^{\infty }{\left. {{\left( -1\right) }^{n}}\, \left( \sum_{k=0}^{n}{\left. \frac{1}{\left( 2 k+1\right) \, \left( 2 n-2 k+1\right) \operatorname{!}}\right.}\right) \, {{z}^{2 n+2}}\right.}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i63)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o63} \sum_{n=0}^{\infty }{\left. {{\left( -1\right) }^{n}}\, \left( \sum_{k=0}^{n}{\left. \frac{1}{\left( 2 k+1\right) \, \left( 2 n-2 k+1\right) }\right.}\right) \, {{z}^{2 n+2}}\right.}\]
+</p>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Subsection cell -->
+    <div class="subsect">
+      <p>  2.4 Recursive representations from recurrence equations
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">In certain cases the algorithm finds a recurrence equation but does not find a representation related to hypergeometric type series. In this case it uses the recurrence equation obtained to write a recursive formula for the coefficients.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i64)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o64} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+2}}=\frac{{A_{n+1}}+2 {A_n}}{n+2}\operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=1\operatorname{,}{A_1}=1]]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i65)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">+</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o65} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+5}}=\frac{-2 \left( n+2\right) \, \left( n+4\right) \, {A_{n+4}}-{A_{n+3}}-6 {A_{n+2}}-12 {A_{n+1}}-8 {A_n}}{\left( n+4\right) \, \left( n+5\right) }\operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=\sin{(1)}\operatorname{,}{A_1}=\cos{(1)}\operatorname{,}{A_2}=-\frac{\sin{(1)}-2 \cos{(1)}}{2}\operatorname{,}{A_3}=-\frac{6 \sin{(1)}+\cos{(1)}}{6}\operatorname{,}{A_4}=-\frac{11 \sin{(1)}+12 \cos{(1)}}{24}]]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i66)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o66} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+4}}=\frac{2 \left( n+3\right) \, {A_{n+3}}-\left( {{\left( n+2\right) }^{2}}+n+3\right) \, {A_{n+2}}+2 \left( n+2\right) \, {A_{n+1}}-{A_n}}{\left( n+3\right) \, \left( n+4\right) }\operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=0\operatorname{,}{A_1}=1\operatorname{,}{A_2}=1\operatorname{,}{A_3}=\frac{1}{6}]]\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Observe that this can be used to compute truncated series. My package contains the function 'Taylor' with the same syntax as the internal Maxima 'taylor' to compute Taylor polynomials.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i67)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">Taylor</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">7</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o67} -\frac{{{z}^{7}}}{5040}+\frac{{{z}^{5}}}{120}-\frac{{{z}^{3}}}{6}+z\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">It is easy to see that for larger order expansions this approach has a better efficiency than what is internally implemented. Let us consider truncated series of arctan(z)^2.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i68)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">Taylor</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">10</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o68} \frac{563 {{z}^{10}}}{1575}-\frac{44 {{z}^{8}}}{105}+\frac{23 {{z}^{6}}}{45}-\frac{2 {{z}^{4}}}{3}+{{z}^{2}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i69)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">taylor</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">10</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o69)/T} {{z}^{2}}-\frac{2 {{z}^{4}}}{3}+\frac{23 {{z}^{6}}}{45}-\frac{44 {{z}^{8}}}{105}+\frac{563 {{z}^{10}}}{1575}+\operatorname{...}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i70)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">showtime</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">true</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[Evaluation took 0.0000 seconds (0.0000 elapsed) using 0 bytes.\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i71)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">Taylor</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">1000</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[Evaluation took 0.8900 seconds (0.8880 elapsed) using 385.493 MB.\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i72)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">taylor</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">atan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">^</span>
+            <span class="code_number">2</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">0</span>
+            <span class="code_endofline">,</span>
+            <span class="code_number">1000</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[Evaluation took 9.5630 seconds (9.5980 elapsed) using 1248.239 MB.\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i73)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">showtime</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">false</span>
+            <span class="code_endofline">$</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <!-- Text cell -->
+    <div class="comment">Really interesting, right?
+</div>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Section cell -->
+    <div class="section">
+      <p>  3 Non-holonomic power series
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">I will only present three examples for this section. This are series that do not satisfy linear differential equations. The outputs are given as recursive formulas from computed algebraic ordinary differential equations. The most important aspect of this approach is that it can prove difficult identities.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i74)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">log</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o74} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+4}}=\frac{-\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+\left( n+2\right) \, {A_{n+2}}}{\left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) }\operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=0\operatorname{,}{A_1}=1\operatorname{,}{A_2}=-\frac{1}{2}\operatorname{,}{A_3}=\frac{1}{6}]]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i75)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">f</span>
+            <span class="code_operator">:</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">tan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">−</span>
+            <span class="code_function">tan</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o75} \frac{\tan{(z)}+1}{1-\tan{(z)}}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i76)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o76} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+3}}=\frac{2 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +2 \left( n+2\right) \, {A_{n+2}}+4 {A_{n+1}}}{\left( n+2\right) \, \left( n+3\right) }\operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=1\operatorname{,}{A_1}=2\operatorname{,}{A_2}=2]]\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i77)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_variable">g</span>
+            <span class="code_operator">:</span>
+            <span class="code_function">exp</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_function">atanh</span>
+            <span class="code_operator">(</span>
+            <span class="code_function">sin</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">/</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">1</span>
+            <span class="code_operator">+</span>
+            <span class="code_function">cos</span>
+            <span class="code_operator">(</span>
+            <span class="code_number">2</span>
+            <span class="code_operator">·</span>
+            <span class="code_variable">z</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o77} {{\% e}^{2 \operatorname{atanh}\left( \frac{\sin{\left( 2 z\right) }}{\cos{\left( 2 z\right) }+1}\right) }}\]
+</p>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i78)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o78} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+4}}=\frac{3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}}{\left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) }\operatorname{(}3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}\operatorname{)}/\left( \left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) \right) \operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=1\operatorname{,}{A_1}=2\operatorname{,}{A_2}=2\operatorname{,}{A_3}=\frac{8}{3}]]\]
+</p>
+    <!-- Text cell -->
+    <div class="comment">Yeah, this approch does not always yield nice outputs. Although we get a different representation for the two latter expressions (this does not happen with my Maple package), the algorithm is able to prove that they are identical.
+</div>
+    <!-- Code cell -->
+    <table>
+      <tr>
+        <td>
+          <span class="prompt">(%i79)	
+  </span>
+        </td>
+        <td>
+          <span class="input">
+            <span class="code_function">FPS</span>
+            <span class="code_operator">(</span>
+            <span class="code_variable">f</span>
+            <span class="code_operator">−</span>
+            <span class="code_variable">g</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">z</span>
+            <span class="code_endofline">,</span>
+            <span class="code_variable">n</span>
+            <span class="code_operator">)</span>
+            <span class="code_endofline">;</span>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <p>\[\tag{%o79} 0\]
+</p>
+    <!-- Text cell -->
+    <div class="comment"/>
+    <!-- Section cell -->
+    <div class="section">
+      <p>  4 Conclusion
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">As I said, I just presented a few examples. I hope you enjoyed seeing those. My Maxima package will soon be available on the Github repository of maxima-packages. Feel free to use it and contact me if you have any question.
+</div>
+    <hr/>
+    <p>
+      <small> Created with 
+        <a href="https://wxMaxima-developers.github.io/wxmaxima/">wxMaxima</a>.</small>
+    </p>
+  </body>
+</html>
