@@ -69,7 +69,7 @@
     <p>\[\mbox{}\\Version 1.0 \mbox{}\\Copyright (c) May 2020, Bertrand Teguia Tabuguia \mbox{}\\https://www.bertrandteguia.com \mbox{}\\bteguia@ mathematik.uni-kassel.de \mbox{}\\University of Kassel, Germany \]
 </p>
     <!-- Text cell -->
-    <div class="comment">Yeah! I completed this package last year with my Ph.D. thesis which is the main reference for the mathematical background behind the algorithms implemented. Nevertheless, the code gets better and better since June 2020 when I started the Maple version of the package. By the way, I made a demonstration in the Maple Conference 2020. Now, I would say it is "almost-surely" (I don't know the measure) "perfect". For deep understanding, I recommend (mathematicians) to read my Ph.D. thesis or the papers
+    <div class="comment">Yeah! I completed this package last year with my Ph.D. thesis which is the main reference for the mathematical background behind the algorithms implemented. Nevertheless, the code got better and better since June 2020 when I started the Maple version of the package. By the way, I made a demonstration in the Maple Conference 2020. Now, I would say it is "almost-surely" (I don't know the measure) "perfect". For deep understanding, I recommend (mathematicians) to read my Ph.D. thesis or the papers
       <br/>(1)  Teguia Tabuguia, Bertrand. A variant of van Hoeij's algorithm to compute hypergeometric term solutions of holonomic recurrence equations.
       <br/>(2)  Teguia Tabuguia, Bertrand and Koepf, Wolfram. Symbolic computation of hypergeometric type power series
       <br/>That will appear soon...
@@ -193,7 +193,7 @@
     <p>\[\tag{%o5} \left( n+1\right) \, \left( n+2\right) \, \left( n+3\right) \, {a_{n+3}}-\left( n+1\right) \, \left( n+2\right) \, {a_{n+2}}+\left( n+1\right) \, {a_{n+1}}-{a_n}=0\]
 </p>
     <!-- Text cell -->
-    <div class="comment">The next step is to solve that recurrence equation. Here we use a new algorithm from my Ph.D.: mfoldHyper, to compute what we call m-fold hypergeometric term solutions.
+    <div class="comment">The next step is to solve that recurrence equation. Here we use a new algorithm from my Ph.D.: mfoldHyper, to compute what we call m-fold hypergeometric term (sometimes called Liouvillian sequences) solutions.
 </div>
     <!-- Code cell -->
     <table>
@@ -597,7 +597,7 @@
       </tr>
     </table>
     <!-- Text cell -->
-    <div class="comment">I may need to find how to avoid such specification for the user in Maxima...
+    <div class="comment">I may need to find how to avoid such a specification for the user in Maxima...
 </div>
     <!-- Code cell -->
     <table>
@@ -2785,7 +2785,7 @@
         </td>
       </tr>
     </table>
-    <p>\[\tag{%o78} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+4}}=\frac{3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}}{\left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) }\left( 3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}\right) /\left( \left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) \right) \operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=1\operatorname{,}{A_1}=2\operatorname{,}{A_2}=2\operatorname{,}{A_3}=\frac{8}{3}]]\]
+    <p>\[\tag{%o78} [\sum_{n=0}^{\infty }{\left. {A_n}\, {{z}^{n}}\right.}\operatorname{,}{A_{n+4}}=\frac{3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}}{\left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) }\operatorname{(}3 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, {A_{k+2}}\, \left( n-k+2\right) \, {A_{n-k+2}}\right.}\right) -\left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, \left( k+2\right) \, \left( k+3\right) \, {A_{k+3}}\, {A_{n-k+1}}\right.}\right) -4 \left( \sum_{k=1}^{n}{\left. \left( k+1\right) \, {A_{k+1}}\, {A_{n-k+1}}\right.}\right) +6 \left( n+2\right) \, \left( n+3\right) \, {A_{n+3}}+8 \left( n+2\right) \, {A_{n+2}}-24 {A_{n+1}}\operatorname{)}/\left( \left( n+2\right) \, \left( n+3\right) \, \left( n+4\right) \right) \operatorname{,}n\operatorname{&gt;  =}0\operatorname{,}[{A_0}=1\operatorname{,}{A_1}=2\operatorname{,}{A_2}=2\operatorname{,}{A_3}=\frac{8}{3}]]\]
 </p>
     <!-- Text cell -->
     <div class="comment">Yeah, this approach does not always yield nice outputs. Although we get a different representation for the two latter expressions (this does not happen with my Maple package), the algorithm is able to prove that they are identical.
@@ -2816,6 +2816,14 @@
     </table>
     <p>\[\tag{%o79} 0\]
 </p>
+    <!-- Section cell -->
+    <div class="section">
+      <p>  4 Conclusion
+</p>
+    </div>
+    <!-- Text cell -->
+    <div class="comment">As I said, I just presented a few examples. I hope you enjoyed seeing those. My Maxima package will soon be available on the Github repository of maxima-packages. Feel free to use it and contact me if you have any question.
+</div>
     <hr/>
     <p>
       <small> Created with 
