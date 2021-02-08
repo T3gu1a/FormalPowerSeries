@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Worksheet>
+<Version major="2019" minor="2"/>
+<Label-Scheme value="2" prefix=""/>
+<View-Properties presentation="false" autoexpanding_sections="true" UserProfileName="Maple Default Profile" NumericFormat-ApplyInteger="true" NumericFormat-ApplyRational="true" NumericFormat-ApplyExponent="false" editable="true">
+</View-Properties>
+<MapleNet-Properties prettyprint="3" warnlevel="3" compactdisplay="false" preplot="" helpbrowser="standard" displayprecision="-1" echo="1" unitattributes="&quot;fontweight&quot; = &quot;bold&quot;" imaginaryunit="I" longdelim="true" elisiontermsthreshold="10000" elisiondigitsafter="100" elisiondigitsbefore="100" plotdevice="inline" errorbreak="1" plotoptions="" plotdriver="opengl" quiet="false" elisiontermsbefore="100" elisiontermsafter="100" historytimestamp="false" screenwidth="79" indentamount="4" plotoutput="terminal" screenpixelheight="1080" rtablesize="[10, 10]" useclientjvm="true" labelwidth="20" postplot="" typesetting="extended" ansi="false" ansicolor="[]" elisiondigitsthreshold="10000" showassumed="1" ansilprint="false" trailingsemicolon="true" errorcursor="false" labelling="true" screenheight="25" prompt="&gt; " verboseproc="1" latexwidth="8.0" ShowLabels="true"/>
+<Styles>
+<Font name="Heading 1" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Warning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Line Printed Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 2" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="16" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Output" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Inert Output" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[144,144,144]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Heading 3" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="true" opaque="false" readonly="false" size="14" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Diagnostic" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[40,120,40]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 1" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[120,0,14]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text Output" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 2" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 3" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 4" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Ordered List 5" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Header and Footer" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="10" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkError" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Atomic Variable" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[175,0,175]" italic="true" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="HyperlinkWarning" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[0,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Dictionary Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[147,0,15]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="2D Math" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Bullet Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Plot" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Annotation Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="List Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Dash Item" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="2D Input" background="[255,255,255]" bold="false" executable="true" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Error" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,255]" italic="false" opaque="false" readonly="true" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Title" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="18" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Text" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Normal" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Caption Reference" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Code" background="[255,255,255]" bold="false" executable="false" family="Courier New" foreground="[255,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Maple Input Placeholder" background="[255,255,255]" bold="true" executable="true" family="Courier New" foreground="[200,0,200]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="true"/>
+<Font name="Equation Label" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Author" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Font name="Hyperlink" background="[255,255,255]" bold="false" executable="false" family="Times New Roman" foreground="[0,128,128]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="true" placeholder="false"/>
+<Font name="Caption Text" background="[255,255,255]" bold="true" executable="false" family="Times New Roman" foreground="[0,0,0]" italic="false" opaque="false" readonly="false" size="12" subscript="false" superscript="false" underline="false" placeholder="false"/>
+<Layout name="Heading 1" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="4" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Warning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 4" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Line Printed Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 2" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="2" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Output" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.3" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Heading 3" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Diagnostic" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="any" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 1" alignment="left" bullet="numeric" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Text Output" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="newline" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Ordered List 2" alignment="left" bullet="alphabetic" firstindent="0" leftmargin="36" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 3" alignment="left" bullet="roman" firstindent="0" leftmargin="72" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 4" alignment="left" bullet="ALPHABETIC" firstindent="0" leftmargin="108" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Ordered List 5" alignment="left" bullet="ROMAN" firstindent="0" leftmargin="144" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="-1" bulletsuffix="."/>
+<Layout name="Annotation Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkError" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="HyperlinkWarning" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Bullet Item" alignment="left" bullet="dot" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Maple Plot" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="List Item" alignment="left" bullet="indent" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Dash Item" alignment="left" bullet="dash" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="3" spacebelow="3" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Error" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Title" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="12" spacebelow="12" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Normal" alignment="left" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="0" spacebelow="0" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Layout name="Author" alignment="centred" bullet="none" firstindent="0" leftmargin="0" rightmargin="0" linespacing="0.0" spaceabove="8" spacebelow="8" linebreak="space" pagebreak-before="false" initial="0" bulletsuffix=""/>
+<Pencil-style name="Pencil 1" pen-color="[0,0,0]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 2" pen-color="[0,0,255]" pen-height="1.0" pen-width="1.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 3" pen-color="[0,0,0]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 4" pen-color="[0,0,255]" pen-height="3.0" pen-width="3.0" pen-opacity="1.0"/>
+<Pencil-style name="Pencil 5" pen-color="[255,0,0]" pen-height="5.0" pen-width="5.0" pen-opacity="1.0"/>
+<Highlighter-style name="Highlighter 5" pen-color="[255,255,0]" pen-height="48.0" pen-width="48.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 3" pen-color="[51,255,0]" pen-height="24.0" pen-width="24.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 4" pen-color="[0,255,255]" pen-height="32.0" pen-width="32.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 1" pen-color="[255,153,255]" pen-height="12.0" pen-width="8.0" pen-opacity="0.8"/>
+<Highlighter-style name="Highlighter 2" pen-color="[255,204,0]" pen-height="14.0" pen-width="14.0" pen-opacity="0.8"/>
+</Styles>
+<Startup-Code startupcode=""/>
+<Task-table>
+    <Task-category name="&lt;default&gt;"/>
+</Task-table>
+<Task/>
+<Group hide-input="false" labelreference="L2134" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">restart</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2239" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2089" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" foreground="[0,0,255]" size="36" layout="Normal" alignment="centred"><Font size="36" bold="true" foreground="[0,0,255]">New results in computing Formal Power Series in Maple: Hypergeometric type and non-holonomic power series</Font></Text-field><Text-field style="Text" bold="true" size="18" layout="Normal" alignment="centred"></Text-field><Text-field style="Text" bold="true" size="18" layout="Normal" alignment="centred"><Font size="18" bold="true">February 2021</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">This worksheet presents examples that show how the new package FPS will be a great addition to Maple. It starts by explaining why it is worth to have a direct approach. Then it gives some problems related to the current Maple implementation. This is followed by results that could not be obtained previously. The list of examples can be extended at will, the goal here is just to present a few with emphasis on new results. Some byproducts are also presented.</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2288" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">libname:=currentdir(),libname</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2088" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">with(FPS)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2245" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">with(CodeTools):</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2281" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2164" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16" bold="true">convert/FormalPowerSeries is absolutely non-linear and misses to work for sums. Nevertheless, we would like to show why mapping convert/FormalPowerSeries on the input summands is not a good idea.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Indeed, by doing so we lose some aspects of the algorithm that might gather in its simplification aspect. In fact mapping convert/FormalPowerSeries on the input summands will force outputs to have at least the same length as their inputs, which is not an appropriate behavior for a symbolic algorithm. Let us give some examples.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2107" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=cos(z)^2+sin(z)^2:convert(f,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2261" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(g-&gt;convert(g,FormalPowerSeries,z,n),f)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2136" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=cos(2*z)-(cos(z)^2-sin(z)^2):convert(f,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2120" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(g-&gt;convert(g,FormalPowerSeries,z,n),f)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2186" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=(z+3*z^2+z^3)*exp(z):convert(f,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2216" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(g-&gt;convert(g,FormalPowerSeries,z,n),expand(f))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2137" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=sin(z)+z*cos(z):convert(f,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2235" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(g-&gt;convert(g,FormalPowerSeries,z,n),f)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2180" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=(-1/2*z + 1/6*z^3)*arctan(z):convert(f,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2202" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(g-&gt;convert(g,FormalPowerSeries,z,n),expand(f))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2093" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2165" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" foreground="[0,0,255]" size="16" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">The outputs that one should get in the three latter examples</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2095" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS((z+3*z^2+z^3)*exp(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2259" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(sin(z)+z*cos(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2154" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS((-1/2*z + 1/6*z^3)*arctan(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2275" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2194" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" size="16" layout="Normal"><Font size="16">It is therefore worth to think of a direct approach and this is what the function FPS[FPS] does. However, before getting into such computations, we give examples for which the current Maple implementation yields more complicated or even wrong results due to its lack of an algorithm to compute m-fold hypergeometric term coefficients. </Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2188" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16" bold="true">Complicated results</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2182" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert((sin(z)+cos(z))^3,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2155" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(ln(1+z+z^2+z^3),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2184" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert((sin(z)+cos(z))^3,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2121" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(tan(3*arctan(z^2)),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2262" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(1/(q[1]-z^2)/(q[2]-z^3),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2087" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2241" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Observe that mapping convert/FormalPowerSeries on these inputs will not make the results any better.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" foreground="[0,0,255]" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">Much simpler outputs</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2090" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS((sin(z)+cos(z))^3,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2122" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(ln(1+z+z^2+z^3),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2135" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS((sin(z)+cos(z))^3,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2129" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(tan(3*arctan(z^2)),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2113" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1/(q[1]-z^2)/(q[2]-z^3),z,n)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2257" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2104" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16" bold="true">Wrong outputs</Font><Font size="16">: wrong computation of initial coefficients</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">The following examples clearly show that computing linear combinations in the current Maple code is not well handled.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2280" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert((-1/2*z + 1/6*z^3)*arctan(z) + (-1/4*z^2 + 1/12)*ln(z^2 + 1) + 5/12*z^2 + 1/4,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2228" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series((-1/2*z + 1/6*z^3)*arctan(z) + (-1/4*z^2 + 1/12)*ln(z^2 + 1) + 5/12*z^2 + 1/4,z=0,1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2189" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(exp(z)+log(1+z),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2251" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(exp(z)+log(1+z),z=0,1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2178" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(arctan(z+2),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2231" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(arctan(z+2),z=0,1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2213" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(arctanh(z)+cosh(z),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2176" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(arctanh(z)+cosh(z),z=0,1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2246" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(exp(z)+1/(1-z),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2097" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(exp(z)+1/(1-z),z,1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2161" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2168" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">Correct outputs</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2166" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS((-1/2*z + 1/6*z^3)*arctan(z) + (-1/4*z^2 + 1/12)*ln(z^2 + 1) + 5/12*z^2 + 1/4,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2115" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(exp(z)+log(1+z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2210" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(arctan(z+2),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2192" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(arctanh(z)+cosh(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2114" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(exp(z)+1/(1-z),z,n)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2187" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2263" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" foreground="[0,0,255]" bold="true">Hypergeometric type power series</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">This is a generalization of all types of series that Maple can currently handle. It includes linear combinations of Laurent-Puiseux series by default. All this is made possible thanks to the algorithm <Font bold="true" foreground="[0,0,255]">mfoldHyper</Font><Font bold="true"> </Font>which computes m-fold hypergeometric term solutions of holonomic recurrence equations. Taking into account a precise computation of linear combinations without neglecting initial terms, FPS computes hypergeometric type series linearly.</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">convert/FormalPowerSeries fails in all the examples of this section.</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">We recall some steps of the algorithm</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2266" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f:=exp(z^2)+1/(1-z)^2</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2284" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">HolonomicDE(f,F(z))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2099" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE:=FindRE(f,z,a(n))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2238" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">The use of mfoldHyper. This algorithm is new and is not yet implemented in Maple at the current time.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2277" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">mfoldHyper(RE,a(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2158" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Since there is a 2-fold hypergeometric term solution, one can compute the coefficient of the odd term as follows.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2175" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">mfoldHyper(RE,a(n),ml=[2,1])</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2181" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Finally the procedure searches for the needed linear combination and gets the following series representation</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2173" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(f,z,n)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2174" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Note that this latter step consisting of finding the linear combination also requires a careful algorithmic consideration. This is to avoid misrepresentation as we highligthed in the current Maple implementation.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">For the next computations, the maximum value of differential equations to be computed is fixed to 10 because it is the default value used in FPS.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2258" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(exp(z^2)+1/(1-z)^2,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2211" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(arctan(z)+arcsin(z),FormalPowerSeries,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2200" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(exp(z)+arcsinh(z)+cosh(z),FormalPowerSeries,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2229" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(sin(2*arcsin(z))+cos(3*arccos(z)),FormalPowerSeries,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2170" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(1/sqrt(1-z^3)+ln(1+z^2),FormalPowerSeries,z,n,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2111" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(cosh(ln(1+z))+sin(z)+exp(z^2)+z*cos(z^3),FormalPowerSeries,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2247" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(log(1+sqrt(z)+z+z^(3/2)),FormalPowerSeries,z,n,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2105" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(cos(sqrt(z))+sin(z^(3/4)),FormalPowerSeries,z,n,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2230" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(arctan(sqrt(z))+arcsinh(z^(1/3)),FormalPowerSeries,differentialorder=10))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2102" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(arcsin(z^(1/7))+ln(1+z^(1/3)),FormalPowerSeries,differentialorder=11))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2101" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(convert(cos(sqrt(z))+sin(z^(1/3))+exp(z^(3/4)),FormalPowerSeries,differentialorder=12))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2128" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2271" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" foreground="[0,0,255]" size="16" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">Corresponding results</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2106" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(arctan(z)+arcsin(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2151" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(exp(z)+arcsinh(z)+cosh(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2207" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(sin(2*arcsin(z))+cos(3*arccos(z)),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2279" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(1/sqrt(1-z^3)+ln(1+z^2),z,n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2177" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(cosh(ln(1+z))+sin(z)+exp(z^2)+z*cos(z^3),z,n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2201" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(log(1+sqrt(z)+z+z^(3/2)),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2252" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(cos(sqrt(z))+sin(z^(3/4)),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2156" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(arctan(sqrt(z))+arcsinh(z^(1/3)),z,n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2141" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(arcsin(z^(1/7))+ln(1+z^(1/3)),z,n,maxdeorder=11))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2224" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(cos(sqrt(z))+sin(z^(1/3))+exp(z^(3/4)),z,n,maxdeorder=12))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2233" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal">Bonus: special functions</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2226" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(exp(z)+hypergeom([a, b], [c], z^2),z,n,fpstype=SpecialFunctions))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2272" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2148" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">In principle, Maple's conbert/FormalPowerSeries should be able to compute the following power series since the underlying recurrence equations have only two terms. This is related to finding the linear combination and the Puiseux numbers which are generalized in the new FPS command.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2153" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(1/(sqrt(1-4*z))*((1-sqrt(1-4*z))/2*z)^2,FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2124" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FindRE(1/(sqrt(1-4*z))*((1-sqrt(1-4*z))/2*z)^2,z,a(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2138" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">convert(sqrt(sqrt(8*z^3+1)-1),FormalPowerSeries,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2267" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FindRE(sqrt(sqrt(8*z^3+1)-1),z,a(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2140" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2249" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" foreground="[0,0,255]" size="16" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">Expected results</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2283" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1/(sqrt(1-4*z))*((1-sqrt(1-4*z))/2*z)^2,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2234" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(sqrt(sqrt(8*z^3+1)-1),z,n)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2112" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2269" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" foreground="[0,0,255]" bold="true">Non-hypergeometric type but holonomic series</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">For such input we give the output in a recursive form. This approach is important for computing larger-degree Taylor polynomials of holonomic functions. This is implemented in the command FPS[Taylor].</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2125" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(arcsin(z)^3,z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2208" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(arcsin(z)^3,z,n,fpstype=Holonomic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2092" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">Taylor(arcsin(z)^3,z,0,10)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2132" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(arcsin(z)^3,z,11)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2149" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(exp(z+z^2)*cos(z),z,n,fpstype=Holonomic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2232" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">Taylor(exp(z+z^2)*cos(z),z,0,10)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2167" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">series(exp(z+z^2)*cos(z),z,11)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2273" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">T:=Time():Taylor(exp(z+z^2)*cos(z),z,0,1000):Time()-T</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2110" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">T:=Time():series(exp(z+z^2)*cos(z),z,1000):Time()-T</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2126" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2286" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" foreground="[0,0,255]" bold="true">Non-holonomic case</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">New approach on what to do when the given input does not satisfy a linear recurrence equation. The algorithm seeks for homogeneous quadratic differential equations.</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2196" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(tan(z),z,n)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2098" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">QDE(tan(z),F(z))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2243" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FindQRE(tan(z),z,a(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2152" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(tan(z)/z^2,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2123" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1/(exp(z)-1),z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2143" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1/(1+sin(z)),z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2145" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1/cos(z)^2,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2244" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(1+tan(z)^2,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2091" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2142" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" foreground="[0,0,255]" bold="true">Proving non-trivial identities</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" bold="false">A consequence of this new approach is the detection of difficult identities. The algorithm finds equivalences that are hidden to the Maple simplify command.</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2108" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f1:=2*arctanh(sin(2*z)/(1+cos(2*z)))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2171" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">g1:=ln((1+tan(z))/(1-tan(z)))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2169" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(f1,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2250" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(g1,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2198" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">FPS(f1-g1,z,n,fpstype=Quadratic)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2221" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(f1-g1)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2255" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">f2:=log(tan(z/2)+sec(z/2))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2179" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">g2:=arcsinh(sin(z)/(1+cos(z)))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2276" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(f2,z,n,fpstype=Quadratic))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2096" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(g2,z,n,fpstype=Quadratic))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2157" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">CPUTime(FPS(f2-g2,z,n,fpstype=Quadratic))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2270" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">simplify(f2-g2)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2190" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2103" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"><Font size="16" foreground="[0,0,255]" bold="true">DEtools[FindODE] vs FPS[HolonomicDE]: faster computation of holonomic differential equations</Font></Text-field><Text-field style="Text" bold="true" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">A different strategy to compute holonomic differential equations is used. Linear algebra is better exploited. This increases the speed of FPS for computing hypergeometric type series.</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">Below are some examples for comparison with FormalPowerSeries[HolonomicDE] which is equivalent to DEtools[FindODE] apart from the simplification applied for special functions in the latter.</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2203" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,DE:=CPUTime(DEtools[FindODE](arctan(z)^2+sin(z)^4+log(1+z)^5,F(z),12)):</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2209" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,PDEtools[difforder](DE,z)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2146" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,DE:=CPUTime(HolonomicDE(arctan(z)^2+sin(z)^4+log(1+z)^5,F(z),12)):</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2205" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,PDEtools[difforder](DE,z)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2268" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,DE:=CPUTime(DEtools[FindODE]((3*z+5*z^7+11*z^13)*log(1+z^3+z^7)+arctanh(z)*cos(z)^5,F(z),15)):</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2195" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,PDEtools[difforder](DE,z)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2218" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,DE:=CPUTime(HolonomicDE((3*z+5*z^7+11*z^13)*log(1+z^3+z^7)+arctanh(z)*cos(z)^5,F(z),15)):</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2217" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">t,PDEtools[difforder](DE,z)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2264" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2144" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">For special functions one can use FPS[HolonomicDE] as follows</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2220" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">HolonomicDE(Int(Int(2*hypergeom([3/4, 5/4], [2], 64*x^3*(1 + x)/(-4*x^2 + 1)^2)/(-4*x^2 + 1)^(3/2), x), x)/x^2,F(x),SpecialFunctions)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2285" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">HolonomicDE(BesselI(0, x) + x*BesselI(2, x), F(x),SpecialFunctions)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2127" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">HolonomicDE(KummerM(1/4, 1, x) + KummerM(-1/4, 1, x),F(x),SpecialFunctions)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2117" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">HolonomicDE(LegendreP(1/4, x)*LegendreP(1/2, x),F(x),SpecialFunctions)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2223" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2214" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16" bold="true" foreground="[0,0,255]">Detected issue on LREtools[hypergeomsols] for computing hypergeometric terms, a particular case of mfoldHyper implemented in FPS[rectohyperterm]</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">The function implements a variant of the one implemented in LREtools[hypergeomsols] with a further step consisting of writing outputs using factorial and Pochhammer symbols. The code FPS[sumhyperRE] computes a holonomic recurrence equation satisfied by a list of hypergeometric terms.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2159" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[1]:=sumhyperRE([(a^(1/3))^n/2^n,(1+sqrt(5))^n/2^n],v(n))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2191" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](RE[1],v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2248" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[2]:=sumhyperRE([(1-sqrt(7))^n/n!,(1+sqrt(7))^n/(n+1)!],v(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2225" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](RE[2],v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2139" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2094" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">FPS[rectohyperterm]</Font></Text-field><Text-field style="Text" layout="Normal"><Font size="16">the argument &quot;C&quot; is used to allow computations for solutions involving non-rational numbers, hence in the field of complex numbers C.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2133" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[1],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2183" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[2],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2236" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2260" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Mark van Hoeij, the author of LREtools[hypergeomsols], proposed an alternative for this issue by using convert/RootOf</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2118" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](convert(RE[1],RootOf),v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2119" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](convert(RE[2],RootOf),v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2109" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Below are examples where this does not lead to results</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2100" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[3]:=sumhyperRE([cos(x)^(3*n)/n!,(-sin(x))^(3*n)/n!],v(n))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2197" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](convert(RE[3],RootOf),v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2162" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[4]:=sumhyperRE([ln(x)^n,ln(y*x)^n],v(n))</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2185" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](convert(RE[4],RootOf),v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2253" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2215" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">FPS[rectohyperterm]</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2172" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[3],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2240" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[4],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2254" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">An important fact for solutions over algebraic extension fields: the code gathers conjugate hypergeometric term solutions in a single representation. This is made possible thanks to the Maple standard representation of algebraic numbers: &quot;RootOf&quot;. When needed, as in the case of computing power series, the values can be recovered by applying &quot;allvalues&quot; to the solutions as shown below. </Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2265" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[5]:=FindRE(1/(1+z+z^7),z,v(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2256" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[5],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2150" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(allvalues,%)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2116" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](RE[5],v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2278" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">The advantage is that this makes it possible to avoid the reconstruction of solutions which is a further step considered by LREtools[hypergeomsols].</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2222" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">S:=[solve(z^3+7*z^2+z+28,z)]:</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2212" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[6]:=sumhyperRE([S[1]^n,S[2]^n,S[3]^n],v(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2274" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[6],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2237" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">map(allvalues,%)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2282" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](RE[6],v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2204" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">RE[7]:=sumhyperRE([I^n/n!,(-I)^n/n!,n!*(1+I*sqrt(7))^n/a^n,n!*(1-I*sqrt(7))^n/a^n],v(n))</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2163" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">rectohyperterm(RE[7],v(n),C)</Text-field>
+</Input>
+</Group>
+<Group hide-input="false" labelreference="L2131" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal">LREtools[hypergeomsols](RE[7],v(n),{},output=basis)</Text-field>
+</Input>
+</Group>
+<Group labelreference="L2160" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"></Text-field><Text-field style="Text" layout="Normal"><Font size="16">Note, however, that these remarks are not meant to show that FPS[rectohyperterm] is better than LREtools[hypergeomsols]. The idea is to present some tools that could improve LREtools[hypergeomsols] whose speed remains the best in most of the successful examples.</Font></Text-field><Text-field style="Text" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2199" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2193" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field style="Text" size="16" layout="Normal"></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">This presentation of the package FPS ends here. We hope you found it interesting. Feel free to send questions to </Font></Text-field><Text-field style="Text" size="16" layout="Normal"><Font size="16">bertrand.teguia@aims-cameroon.org</Font></Text-field><Text-field style="Text" size="16" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L2242" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+<Group labelreference="L1673" drawlabel="true" applyint="true" applyrational="true" applyexponent="false">
+<Input><Text-field prompt="&gt; " style="Maple Input" layout="Normal"></Text-field>
+</Input>
+</Group>
+</Worksheet>
